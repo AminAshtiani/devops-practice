@@ -1,0 +1,22 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: us
+    variant: ''
+  identity:
+    hostname: ubuntu
+    username: packer
+    password: $6$rounds=4096$5U0vK5Tge.VQ3bNl$S5yTkG5ZT7MXMflmiXt0XtHTLQ0G1Oc79eX2JwG5mB/C7eqOibK12Lb6oAkEJfnq1TpaROGrdH5huLg3l5nCR.
+  ssh:
+    install-server: true
+    allow-pw: true
+  packages:
+    - vim
+    - curl
+    - git
+  late-commands:
+    - echo 'packer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/packer
+  user-data:
+    disable_root: false
